@@ -1,24 +1,64 @@
-#include <Arduino.h>
+# Arduino.cc - Adafruit OLED SSD1306 Display Tutorial
 
-// INCLUDES THE REQUIRED LIBARYS FOR USING THE ADAFRUIT OLED SSD1306 DISPLAY!!!!
+
+```
+Author: BlackLeakz
+Website: https://blackzspace.de
+Github: https://github.com/blackleakz/oled_ssd1306_adafruit/tree/main/Arduino.cc%20-%20OLED%20SSD1306
+
+Description:
+
+In this tutorial, you'll learn how to use the Adafruit's OLED SSD1306 Display for Arduino.cc !
+
+
+```
+
+# Steps:
+
+1 : Importing the right libarys:
+
+```cpp
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 
+```
 
+2 : Define the target-device + it's parameters!
 
+```cpp
 
-
-// Adafruit OLED SSD1306 Parameters (WIDTH, HEIGHT)
-#define SCREEN_WIDTH 128   // Self-explained variables!
+// Self-explained variables!
+#define SCREEN_WIDTH 128   
 #define SCREEN_HEIGHT 64
 #define OLED_RESET     -1 
 #define SCREEN_ADDRESS 0x3C
 
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+```
 
+3 : Initialize Display by running this code in ``` void setup() {}```
 
+```cpp
 
+void setup() {
+ // SETING UP DISPLAY
+    if(!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
+    Serial.println(F("Console > SSD1306 allocation failed"));
+    for(;;);
+    }
+    display.display();
+    display.clearDisplay();
 
+    display.println("TEST"); // Displays TEST
+    display.display();
+
+}
+
+```
+
+# You are finished! Thats all about displaying some text!, If you want to draw a bitmap-logo, add this instead the code-section before!::
+
+```cpp
 // THIS IS A TEST BITMAP, DESIGNED FOR BLACKZSPACE, YOU CAN TEST THE IMAGE BY CALLING drawbitmap function. INFO: We'll use this function in this tutorial!
 #define LOGO_HEIGHT   32
 #define LOGO_WIDTH    32
@@ -46,11 +86,6 @@ void testdrawbitmap(void) {
   display.display();
   delay(4500);
 }
-
-
-
-
-
 void setup() {
      //STARTS SERIAL-COMMUNICATION ON BAUDRATE: 115200
     Serial.begin(115200);
@@ -67,4 +102,18 @@ void setup() {
     // DRAWING LOGO
     testdrawbitmap();
     delay(5000);
+
+
+    
 }
+
+void loop() {
+
+}
+
+
+
+```
+
+
+
