@@ -1,4 +1,5 @@
-from machine import Pin, I2C
+
+from machine import Pin, SoftI2C
 import ssd1306
 from time import sleep
 
